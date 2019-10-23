@@ -1,3 +1,3 @@
-# GameDev
+# Projects
+something
 Various personal projects
-test
