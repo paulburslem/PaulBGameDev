@@ -1,0 +1,343 @@
+fileFormatVersion: 2
+guid: 20291648010e22d4491d29e7c06da949
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8249107068995822363
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_0
+  - first:
+      213: 3632641093285383921
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_1
+  - first:
+      213: 200058279684805460
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_2
+  - first:
+      213: -2691971569006631040
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_3
+  - first:
+      213: -6060857838860171426
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_4
+  - first:
+      213: 369785235516099864
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_5
+  - first:
+      213: -3056824905938209391
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_6
+  - first:
+      213: 774313812015985949
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_7
+  - first:
+      213: -4665073843567370364
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_8
+  - first:
+      213: 3983160634889783326
+    second: ryu_progress_by_thekrillmaster_d9s8hq2_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 89
+        width: 27
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e447312cebf9674494d2c97638c9bdd
+      internalID: 8249107068995822363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 89
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aec65d71fd0f1d48be4da2c2d57eb49
+      internalID: 3632641093285383921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 42
+        width: 38
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d3930cf7e14ab47bc571775e55363e
+      internalID: 200058279684805460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_3
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 42
+        width: 41
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b9a0a0da72ee6a4eaa4e81b12010cb7
+      internalID: -2691971569006631040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_4
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 41
+        width: 34
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfdd60934663bf04c9e2f2801a0b2e32
+      internalID: -6060857838860171426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 42
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2710d532fd50174daeac98f568cae41
+      internalID: 369785235516099864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a28a5e62fcb52478bb3d71bab327e6
+      internalID: -3056824905938209391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 3
+        width: 55
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99c0890f4056d343a7307029ab34c42
+      internalID: 774313812015985949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_8
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 3
+        width: 62
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ee16e6b44db29a47b8d7e10116a701b
+      internalID: -4665073843567370364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ryu_progress_by_thekrillmaster_d9s8hq2_9
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 3
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569d030c1d15ad2499023d522858489a
+      internalID: 3983160634889783326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
