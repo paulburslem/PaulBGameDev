@@ -1,3 +1,3 @@
 # Projects
-Paul Change
+something
 Various personal projects
