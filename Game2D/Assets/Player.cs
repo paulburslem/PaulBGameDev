@@ -123,7 +123,12 @@ public class Player : MonoBehaviour
 		{
 			aimVector.Normalize();
 			var a = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-			arm.localEulerAngles = new Vector3(0, 0, a);
+			var ab = arm.GetComponent<Rigidbody2D>();
+			float cv = 0;
+			var aa = Mathf.SmoothDampAngle(ab.rotation, a, ref cv, .25f, 10, Time.deltaTime);
+			ab.rotation = a;
+			//ab.AddTorque(a - ab.rotation);
+			//arm.localEulerAngles = new Vector3(0, 0, a);
 		}
 
 	}
