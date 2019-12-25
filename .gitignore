@@ -1,0 +1,7 @@
+*.csproj
+*.sln
+Game2D/.vs/
+Game2D/Library/
+Game2D/obj/
+Game2D/Temp/
+Game2D/Logs/
