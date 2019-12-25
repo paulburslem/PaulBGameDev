@@ -54,9 +54,10 @@ public class CanePhysics : MonoBehaviour
 
 
         }
-        else if (collider.tag != "Player")
+        else if (collision.tag != "Player")
         {
-           
+
+            
             Destroy(gameObject);
         }
     }
@@ -72,6 +73,7 @@ public class CanePhysics : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         
        
         

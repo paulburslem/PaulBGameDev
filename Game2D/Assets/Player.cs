@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 	{
         if (shotItem == null)
         {
-            shotItem = Instantiate(projectile, hand.position, arm.rotation);
+            shotItem = Instantiate(projectile, hand.position, arm.rotation * Quaternion.Euler(0, 0, -90));
             shotItem.GetComponent<Rigidbody2D>().AddForce(shotItem.transform.up * fireStrength);
             shotItem.GetComponent<CanePhysics>().fireLocation = hand;
             shotItem.GetComponent<CanePhysics>().Player = gameObject;
