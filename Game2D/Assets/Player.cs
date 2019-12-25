@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
 	float jumpTime;
 	public Transform arm;
 	public Transform hand;
+    public GameObject projectile;
+    public float fireStrength = 3000f;
+    GameObject shotItem;
     // Start is called before the first frame update
     void Awake()
     {
@@ -63,17 +66,35 @@ public class Player : MonoBehaviour
 
 	private void Grapple()
 	{
-	
-	}
+        if (shotItem == null)
+        {
+            shotItem = Instantiate(projectile, hand.position, arm.rotation);
+            shotItem.GetComponent<Rigidbody2D>().AddForce(shotItem.transform.up * fireStrength);
+            shotItem.GetComponent<CanePhysics>().fireLocation = hand;
+            shotItem.GetComponent<CanePhysics>().Player = gameObject;
+        }
+        if (shotItem.GetComponent<CanePhysics>().attached)
+        {
+            Destroy(shotItem);
+        }
+    }
 
 	private void Fire()
 	{
-		
-	}
+        Debug.Log("FIRING");
+       if (shotItem && GetComponent<SpringJoint2D>().enabled && GetComponent<SpringJoint2D>().distance >= 0.5f)
+        {
+            GetComponent<SpringJoint2D>().distance -= Time.deltaTime;
+        }
+    }
 
 	// Update is called once per frame
 	void Update()
     {
+        if (firing)
+        {
+            Fire();
+        }
 	//	Debug.Log($"ground={onGround}");
 	}
 	Collider2D[] ray = new Collider2D[2];
@@ -98,13 +119,10 @@ public class Player : MonoBehaviour
 			}
 		}
 
-	//	Debug.Log($"aim: {aimVector}");
 		if (aimVector.sqrMagnitude > .25f)
 		{
 			aimVector.Normalize();
 			var a = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-			//var a = Vector2.Angle(Vector2.one, aimVector);
-//			Debug.Log($"av: {aimVector}, a: {a}");
 			arm.localEulerAngles = new Vector3(0, 0, a);
 		}
 
