@@ -39,8 +39,9 @@ public class CanePhysics : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation
              (fireLocation.transform.position - transform.position, transform.TransformDirection(Vector3.down));
             transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-            
-            Player.GetComponent<SpringJoint2D>().connectedBody = collider.GetComponent<Rigidbody2D>();
+			Player.GetComponent<Player>().SetupGrapple(transform.position, rb);
+			/*
+			Player.GetComponent<SpringJoint2D>().connectedBody = collider.GetComponent<Rigidbody2D>();
             Vector2 offset = transform.position - Player.GetComponent<Transform>().position;
             Player.GetComponent<SpringJoint2D>().autoConfigureConnectedAnchor = true;
             Player.GetComponent<SpringJoint2D>().enabled = true;
@@ -49,6 +50,7 @@ public class CanePhysics : MonoBehaviour
             Debug.Log($"spring distance: {Player.GetComponent<SpringJoint2D>().distance}");
             
             Player.GetComponent<SpringJoint2D>().connectedAnchor *= new Vector2(1, 1f);
+			*/
             attached = true;
 
 

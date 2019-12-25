@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject projectile;
     public float fireStrength = 3000f;
     GameObject shotItem;
+	public SpringJoint2D grappleJoint;
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,6 +40,15 @@ public class Player : MonoBehaviour
 		UnityEngine.Random.InitState(playerInput.playerIndex * 834652);
 
 		GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
+	}
+
+	internal void SetupGrapple(Vector3 position, Rigidbody2D other)
+	{
+//		grappleJoint.connectedBody = other;
+		grappleJoint.connectedAnchor = position;
+		grappleJoint.distance = (hand.position - position).magnitude * .75f;
+///		grappleJoint.anchor = Vector2.zero;
+		grappleJoint.enabled = true;
 	}
 
 	private void Jump()
@@ -76,6 +86,7 @@ public class Player : MonoBehaviour
         if (shotItem.GetComponent<CanePhysics>().attached)
         {
             Destroy(shotItem);
+			grappleJoint.enabled = false;
         }
     }
 
