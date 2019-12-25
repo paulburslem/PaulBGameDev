@@ -27,10 +27,18 @@ public class @Game2D : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""LookUpDown"",
                     ""type"": ""Value"",
                     ""id"": ""867fad17-1b0f-4ead-90d0-885c803e9706"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LookLeftRight"",
+                    ""type"": ""Value"",
+                    ""id"": ""eae5932c-1d65-437a-a435-93a985756cdf"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -84,28 +92,6 @@ public class @Game2D : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -145,6 +131,28 @@ public class @Game2D : IInputActionCollection, IDisposable
                     ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad;Joystick"",
                     ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5881072-d597-4564-9086-acf690d352a5"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/rz"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""LookUpDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1694a36e-679d-40d7-929a-e0a5a64882f2"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""LookLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -217,7 +225,8 @@ public class @Game2D : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_LookUpDown = m_Player.FindAction("LookUpDown", throwIfNotFound: true);
+        m_Player_LookLeftRight = m_Player.FindAction("LookLeftRight", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
@@ -271,7 +280,8 @@ public class @Game2D : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_LookUpDown;
+    private readonly InputAction m_Player_LookLeftRight;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Grapple;
@@ -280,7 +290,8 @@ public class @Game2D : IInputActionCollection, IDisposable
         private @Game2D m_Wrapper;
         public PlayerActions(@Game2D wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @LookUpDown => m_Wrapper.m_Player_LookUpDown;
+        public InputAction @LookLeftRight => m_Wrapper.m_Player_LookLeftRight;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Grapple => m_Wrapper.m_Player_Grapple;
@@ -296,9 +307,12 @@ public class @Game2D : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @LookUpDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUpDown;
+                @LookUpDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUpDown;
+                @LookUpDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookUpDown;
+                @LookLeftRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookLeftRight;
+                @LookLeftRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookLeftRight;
+                @LookLeftRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookLeftRight;
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
@@ -315,9 +329,12 @@ public class @Game2D : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
+                @LookUpDown.started += instance.OnLookUpDown;
+                @LookUpDown.performed += instance.OnLookUpDown;
+                @LookUpDown.canceled += instance.OnLookUpDown;
+                @LookLeftRight.started += instance.OnLookLeftRight;
+                @LookLeftRight.performed += instance.OnLookLeftRight;
+                @LookLeftRight.canceled += instance.OnLookLeftRight;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
@@ -379,7 +396,8 @@ public class @Game2D : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
+        void OnLookUpDown(InputAction.CallbackContext context);
+        void OnLookLeftRight(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);

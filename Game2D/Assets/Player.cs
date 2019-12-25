@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
 		body = GetComponent<Rigidbody2D>();
 		playerInput.currentActionMap.FindAction("Move").performed += ctx => moveVector = ctx.ReadValue<Vector2>();
 		playerInput.currentActionMap.FindAction("Move").canceled += ctx => moveVector = Vector2.zero;
-		playerInput.currentActionMap.FindAction("Look").performed += ctx =>  { Debug.Log($"ctx {ctx.valueType}, {ctx.ReadValue<Vector2>()}"); aimVector = ctx.ReadValue<Vector2>(); };
-		playerInput.currentActionMap.FindAction("Look").canceled += ctx => aimVector = Vector2.one;
+		playerInput.currentActionMap.FindAction("LookLeftRight").performed += ctx => aimVector.x = ctx.ReadValue<float>();
+		playerInput.currentActionMap.FindAction("LookUpDown").performed += ctx => aimVector.y = -ctx.ReadValue<float>();
 		playerInput.currentActionMap.FindAction("Jump").started += ctx => Jump();
 		playerInput.currentActionMap.FindAction("Jump").canceled += ctx => jumpPressed = false;
 		playerInput.currentActionMap.FindAction("Fire").started += ctx => firing = true;
@@ -98,11 +98,13 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		Debug.Log($"aim: {aimVector}");
+	//	Debug.Log($"aim: {aimVector}");
 		if (aimVector.sqrMagnitude > .25f)
 		{
-			var a = Vector2.Angle(Vector2.one, aimVector);
-			Debug.Log($"a: {a}");
+			aimVector.Normalize();
+			var a = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+			//var a = Vector2.Angle(Vector2.one, aimVector);
+//			Debug.Log($"av: {aimVector}, a: {a}");
 			arm.localEulerAngles = new Vector3(0, 0, a);
 		}
 
