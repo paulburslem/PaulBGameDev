@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 	public Transform hand;
     public GameObject projectile;
     public float fireStrength = 3000f;
+    bool facingRight = true;
     GameObject shotItem;
 	public SpringJoint2D grappleJoint;
 	float grappleVelocityIn;
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour
 			}
 			onPlayer = false;
 			onGround = false;
+            
 		}
 	}
 
@@ -110,6 +112,14 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        if (moveVector.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveVector.x < 0 && facingRight)
+        {
+            Flip();
+        }
         if (firing)
         {
             Fire();
@@ -118,12 +128,18 @@ public class Player : MonoBehaviour
     if (Mathf.Abs(body.velocity.x) >= 0.7f && (onGround || onPlayer))
         {
             GetComponent<Animator>().SetBool("Running", true);
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                playAudio();
+            }
         }
     else
         {
             GetComponent<Animator>().SetBool("Running", false);
+            stopAudio();
         }
         GetComponent<Animator>().SetBool("Grounded", onGround);
+        
     }
     
     Collider2D[] ray = new Collider2D[2];
@@ -152,7 +168,7 @@ public class Player : MonoBehaviour
 		{
 			aimVector.Normalize();
 			var ab = arm.GetComponent<Rigidbody2D>();
-
+            
 			var da = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
 			var ca = ab.rotation;
 			var dv = Mathf.DeltaAngle(ca, da) * 20;
@@ -177,4 +193,18 @@ public class Player : MonoBehaviour
 			grappleJoint.distance += (grappleVelocityOut - grappleVelocityIn) * Time.deltaTime * 10;
 		}
 	}
+    public void playAudio()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    public void stopAudio()
+    {
+        GetComponent<AudioSource>().Stop();
+    }
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+    }
 }
+
