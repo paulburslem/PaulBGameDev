@@ -28,10 +28,10 @@ public class CanePhysics : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"collision tag: {collision.tag}");
-        if (collision.tag == "Grapplable")
+        if (collision.tag != "Player")
         {
 
-            this.transform.position = collision.transform.position;
+           // this.transform.position = collision.transform.position;
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
             //TR.enabled = false;
             LR.enabled = true;
@@ -56,12 +56,7 @@ public class CanePhysics : MonoBehaviour
 
 
         }
-        else if (collision.tag != "Player")
-        {
 
-            
-            Destroy(gameObject);
-        }
     }
     // Update is called once per frame
     private void Update()
