@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 		playerInput.currentActionMap.FindAction("Grapple").started += ctx => Grapple();
 		UnityEngine.Random.InitState(playerInput.playerIndex * 834652);
 
-		GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
+		//GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
 	}
 
 	internal void SetupGrapple(Vector3 position, Rigidbody2D other)
@@ -78,8 +78,8 @@ public class Player : MonoBehaviour
 	{
         if (shotItem == null)
         {
-            shotItem = Instantiate(projectile, hand.position, arm.rotation * Quaternion.Euler(0, 0, -90));
-            shotItem.GetComponent<Rigidbody2D>().AddForce(shotItem.transform.up * fireStrength);
+            shotItem = Instantiate(projectile, hand.position, arm.rotation * Quaternion.Euler(0, 0, 90));
+            shotItem.GetComponent<Rigidbody2D>().AddForce(shotItem.transform.up * -fireStrength);
             shotItem.GetComponent<CanePhysics>().fireLocation = hand;
             shotItem.GetComponent<CanePhysics>().Player = gameObject;
         }
