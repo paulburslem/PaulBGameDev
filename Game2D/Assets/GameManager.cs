@@ -2,24 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	List<Transform> followTargets = new List<Transform>();
+	public Canvas ui;
 	Camera cam;
 	//CinemaMachineTargetGroup
-    void Start()
-    {
+	void Start()
+	{
 		cam = Camera.main;
 
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 
-    }
-
+	}
+	UnityEngine.SceneManagement.Scene currentScene;
+	public void LoadLevel(string scene)
+	{
+		if (currentScene.IsValid())
+			UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(currentScene);
+		if (!string.IsNullOrEmpty(scene))
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+			currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(UnityEngine.SceneManagement.SceneManager.sceneCount - 1);
+			ui.enabled = false;
+		}
+		else
+		{
+			currentScene = default;
+			ui.enabled = true;
+		}
+	} 
 	public void PlayerJoined(PlayerInput p)
 	{
 		followTargets.Add(p.transform);

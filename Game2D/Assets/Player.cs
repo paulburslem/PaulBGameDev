@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     public float fireStrength = 3000f;
     GameObject shotItem;
 	public SpringJoint2D grappleJoint;
+	float grappleVelocityIn;
+	float grappleVelocityOut;
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,12 +36,22 @@ public class Player : MonoBehaviour
 		playerInput.currentActionMap.FindAction("LookUpDown").performed += ctx => aimVector.y = -ctx.ReadValue<float>();
 		playerInput.currentActionMap.FindAction("Jump").started += ctx => Jump();
 		playerInput.currentActionMap.FindAction("Jump").canceled += ctx => jumpPressed = false;
-		playerInput.currentActionMap.FindAction("Fire").started += ctx => firing = true;
-		playerInput.currentActionMap.FindAction("Fire").canceled += ctx => firing = false;
-		playerInput.currentActionMap.FindAction("Grapple").started += ctx => Grapple();
+		playerInput.currentActionMap.FindAction("Grapple").started += ctx => GrappleFire();
+		playerInput.currentActionMap.FindAction("Grapple").canceled += ctx => GrappleEnd();
+		playerInput.currentActionMap.FindAction("GrappleIn").performed += ctx => grappleVelocityIn = ctx.ReadValue<float>();
+		playerInput.currentActionMap.FindAction("GrappleOut").performed += ctx => grappleVelocityOut = ctx.ReadValue<float>();
+		playerInput.currentActionMap.FindAction("GrappleIn").canceled += ctx => grappleVelocityIn = 0;
+		playerInput.currentActionMap.FindAction("GrappleOut").canceled += ctx => grappleVelocityOut = 0;
+
 		UnityEngine.Random.InitState(playerInput.playerIndex * 834652);
 
 		GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
+	}
+
+	private void GrappleEnd()
+	{
+		Destroy(shotItem);
+		grappleJoint.enabled = false;
 	}
 
 	internal void SetupGrapple(Vector3 position, Rigidbody2D other)
@@ -74,7 +86,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	private void Grapple()
+	private void GrappleFire()
 	{
         if (shotItem == null)
         {
@@ -83,11 +95,7 @@ public class Player : MonoBehaviour
             shotItem.GetComponent<CanePhysics>().fireLocation = hand;
             shotItem.GetComponent<CanePhysics>().Player = gameObject;
         }
-        if (shotItem.GetComponent<CanePhysics>().attached)
-        {
-            Destroy(shotItem);
-			grappleJoint.enabled = false;
-        }
+
     }
 
 	private void Fire()
@@ -130,13 +138,13 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			body.drag = .2f;
-			body.AddForce(moveVector * moveForce * .05f);
+			body.drag = .5f;
+			body.AddForce(new Vector2((moveVector * moveForce * .2f).x, 0));
 
-			if (jumpPressed && Time.timeSinceLevelLoad - jumpTime < .25f)
+			if (jumpPressed && Time.timeSinceLevelLoad - jumpTime < .3f)
 			{
-				var jp = (.25f - (Time.timeSinceLevelLoad - jumpTime)) * 2;
-				body.AddForce(new Vector2(0, jp * 1.5f), ForceMode2D.Impulse);
+				var jp = (.3f - (Time.timeSinceLevelLoad - jumpTime)) * 10;
+				body.AddForce(new Vector2(0, jp * 50), ForceMode2D.Force);
 			}
 		}
 
@@ -164,6 +172,9 @@ public class Player : MonoBehaviour
 		{
 			arm.GetComponent<Rigidbody2D>().angularVelocity = 0;
 		}
-
+		if (grappleJoint.enabled)
+		{
+			grappleJoint.distance += (grappleVelocityOut - grappleVelocityIn) * Time.deltaTime * 5;
+		}
 	}
 }

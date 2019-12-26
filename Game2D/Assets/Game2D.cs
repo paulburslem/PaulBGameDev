@@ -54,7 +54,7 @@ public class @Game2D : IInputActionCollection, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""6a6a1253-754a-4a8e-84f8-8b7121842190"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -63,6 +63,22 @@ public class @Game2D : IInputActionCollection, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""613f3315-fb37-400f-b196-ae651e66e5e7"",
                     ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""GrappleIn"",
+                    ""type"": ""Value"",
+                    ""id"": ""c71ed6e3-93cd-46b3-a65a-cfe5500034a0"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""GrappleOut"",
+                    ""type"": ""Value"",
+                    ""id"": ""4783d699-8121-4593-b9c4-4ed41b54e999"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -115,7 +131,7 @@ public class @Game2D : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9f63ae64-1a84-4031-b43a-dffc3c6bfc18"",
-                    ""path"": ""<HID::Logitech Logitech Dual Action>/button5"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/button6"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick;Gamepad"",
@@ -126,7 +142,7 @@ public class @Game2D : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f2bb8fcd-0795-49e4-9ade-214cd460dd85"",
-                    ""path"": ""<HID::Logitech Logitech Dual Action>/button6"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/button5"",
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad;Joystick"",
@@ -153,6 +169,28 @@ public class @Game2D : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad;Joystick"",
                     ""action"": ""LookLeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35ecacc4-ab5f-4d9b-8b98-1b1e797788f9"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/button8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""GrappleIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ec51877-c656-4385-9c97-89e1d2334219"",
+                    ""path"": ""<HID::Logitech Logitech Dual Action>/button7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""GrappleOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -230,6 +268,8 @@ public class @Game2D : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
+        m_Player_GrappleIn = m_Player.FindAction("GrappleIn", throwIfNotFound: true);
+        m_Player_GrappleOut = m_Player.FindAction("GrappleOut", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -285,6 +325,8 @@ public class @Game2D : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Grapple;
+    private readonly InputAction m_Player_GrappleIn;
+    private readonly InputAction m_Player_GrappleOut;
     public struct PlayerActions
     {
         private @Game2D m_Wrapper;
@@ -295,6 +337,8 @@ public class @Game2D : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Grapple => m_Wrapper.m_Player_Grapple;
+        public InputAction @GrappleIn => m_Wrapper.m_Player_GrappleIn;
+        public InputAction @GrappleOut => m_Wrapper.m_Player_GrappleOut;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -322,6 +366,12 @@ public class @Game2D : IInputActionCollection, IDisposable
                 @Grapple.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
                 @Grapple.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
                 @Grapple.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
+                @GrappleIn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleIn;
+                @GrappleIn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleIn;
+                @GrappleIn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleIn;
+                @GrappleOut.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleOut;
+                @GrappleOut.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleOut;
+                @GrappleOut.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrappleOut;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -344,6 +394,12 @@ public class @Game2D : IInputActionCollection, IDisposable
                 @Grapple.started += instance.OnGrapple;
                 @Grapple.performed += instance.OnGrapple;
                 @Grapple.canceled += instance.OnGrapple;
+                @GrappleIn.started += instance.OnGrappleIn;
+                @GrappleIn.performed += instance.OnGrappleIn;
+                @GrappleIn.canceled += instance.OnGrappleIn;
+                @GrappleOut.started += instance.OnGrappleOut;
+                @GrappleOut.performed += instance.OnGrappleOut;
+                @GrappleOut.canceled += instance.OnGrappleOut;
             }
         }
     }
@@ -401,5 +457,7 @@ public class @Game2D : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnGrappleIn(InputAction.CallbackContext context);
+        void OnGrappleOut(InputAction.CallbackContext context);
     }
 }

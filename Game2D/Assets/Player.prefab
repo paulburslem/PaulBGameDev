@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851642329885028690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 2.99, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 775416184639507881}
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 100
-  jumpForce: 25
+  jumpForce: 15
   arm: {fileID: 775416184639507881}
   hand: {fileID: 8367356425052730535}
   projectile: {fileID: 754771112472689732, guid: f7480285ae103754aa3cada03d197dad,
@@ -390,6 +390,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: eae5932c-1d65-437a-a435-93a985756cdf
     m_ActionName: Player/LookLeftRight[/Logitech Logitech Dual Action/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c71ed6e3-93cd-46b3-a65a-cfe5500034a0
+    m_ActionName: Player/GrappleIn[/Logitech Logitech Dual Action/button8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4783d699-8121-4593-b9c4-4ed41b54e999
+    m_ActionName: Player/GrappleOut[/Logitech Logitech Dual Action/button7]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player

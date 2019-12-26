@@ -41,7 +41,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "6a6a1253-754a-4a8e-84f8-8b7121842190",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -50,6 +50,22 @@
                     "type": "Button",
                     "id": "613f3315-fb37-400f-b196-ae651e66e5e7",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GrappleIn",
+                    "type": "Value",
+                    "id": "c71ed6e3-93cd-46b3-a65a-cfe5500034a0",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GrappleOut",
+                    "type": "Value",
+                    "id": "4783d699-8121-4593-b9c4-4ed41b54e999",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -102,7 +118,7 @@
                 {
                     "name": "",
                     "id": "9f63ae64-1a84-4031-b43a-dffc3c6bfc18",
-                    "path": "<HID::Logitech Logitech Dual Action>/button5",
+                    "path": "<HID::Logitech Logitech Dual Action>/button6",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick;Gamepad",
@@ -113,7 +129,7 @@
                 {
                     "name": "",
                     "id": "f2bb8fcd-0795-49e4-9ade-214cd460dd85",
-                    "path": "<HID::Logitech Logitech Dual Action>/button6",
+                    "path": "<HID::Logitech Logitech Dual Action>/button5",
                     "interactions": "",
                     "processors": "StickDeadzone",
                     "groups": "Gamepad;Joystick",
@@ -140,6 +156,28 @@
                     "processors": "",
                     "groups": "Gamepad;Joystick",
                     "action": "LookLeftRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35ecacc4-ab5f-4d9b-8b98-1b1e797788f9",
+                    "path": "<HID::Logitech Logitech Dual Action>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Joystick",
+                    "action": "GrappleIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ec51877-c656-4385-9c97-89e1d2334219",
+                    "path": "<HID::Logitech Logitech Dual Action>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Joystick",
+                    "action": "GrappleOut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
