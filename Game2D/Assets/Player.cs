@@ -138,8 +138,8 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			body.drag = .5f;
-			body.AddForce(new Vector2((moveVector * moveForce * .2f).x, 0));
+			body.drag = .2f;
+			body.AddForce(new Vector2((moveVector * moveForce * .1f).x, 0));
 
 			if (jumpPressed && Time.timeSinceLevelLoad - jumpTime < .3f)
 			{
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
 		}
 		if (grappleJoint.enabled)
 		{
-			grappleJoint.distance += (grappleVelocityOut - grappleVelocityIn) * Time.deltaTime * 5;
+			grappleJoint.distance += (grappleVelocityOut - grappleVelocityIn) * Time.deltaTime * 10;
 		}
 	}
 }
