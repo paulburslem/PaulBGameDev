@@ -107,8 +107,18 @@ public class Player : MonoBehaviour
             Fire();
         }
 	//	Debug.Log($"ground={onGround}");
-	}
-	Collider2D[] ray = new Collider2D[2];
+    if (Mathf.Abs(body.velocity.x) >= 0.7f && (onGround || onPlayer))
+        {
+            GetComponent<Animator>().SetBool("Running", true);
+        }
+    else
+        {
+            GetComponent<Animator>().SetBool("Running", false);
+        }
+        GetComponent<Animator>().SetBool("Grounded", onGround);
+    }
+    
+    Collider2D[] ray = new Collider2D[2];
 	private void FixedUpdate()
 	{
 		onGround = Physics2D.OverlapCircleNonAlloc(new Vector2(transform.position.x, transform.position.y), .1f, ray, LayerMask.GetMask("ground"), float.MinValue, float.MaxValue) > 0;
