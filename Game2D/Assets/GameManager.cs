@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 	} 
 	public void PlayerJoined(PlayerInput p)
 	{
+		if (!currentScene.IsValid())
+			LoadLevel("level1");
 		followTargets.Add(p.transform);
 	}
 

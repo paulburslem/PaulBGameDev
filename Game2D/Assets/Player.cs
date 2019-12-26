@@ -35,8 +35,8 @@ public class Player : MonoBehaviour
 		playerInput.currentActionMap.FindAction("Move").canceled += ctx => moveVector = Vector2.zero;
 		playerInput.currentActionMap.FindAction("LookLeftRight").performed += ctx => aimVector.x = ctx.ReadValue<float>();
 		playerInput.currentActionMap.FindAction("LookUpDown").performed += ctx => aimVector.y = -ctx.ReadValue<float>();
-		playerInput.currentActionMap.FindAction("Jump").started += ctx => Jump();
-		playerInput.currentActionMap.FindAction("Jump").canceled += ctx => jumpPressed = false;
+		playerInput.currentActionMap.FindAction("Jump").started += ctx => JumpStart();
+		playerInput.currentActionMap.FindAction("Jump").canceled += ctx => JumpEnd();
 		playerInput.currentActionMap.FindAction("Grapple").started += ctx => GrappleFire();
 		playerInput.currentActionMap.FindAction("Grapple").canceled += ctx => GrappleEnd();
 		playerInput.currentActionMap.FindAction("GrappleIn").performed += ctx => grappleVelocityIn = ctx.ReadValue<float>();
@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 
 		//GetComponent<SpriteRenderer>().color = UnityEngine.Random.ColorHSV(0, 1, 1, 1, 1, 1, 1, 1);
 	}
+
 
 	private void GrappleEnd()
 	{
@@ -64,10 +65,16 @@ public class Player : MonoBehaviour
 		grappleJoint.enabled = true;
 	}
 
-	private void Jump()
+	private void JumpEnd()
+	{
+		body.gravityScale = 1;
+
+	}
+	private void JumpStart()
 	{
 		if (onGround || onPlayer)
 		{
+			body.gravityScale = .5f;
 			jumpPressed = true;
 			jumpTime = Time.timeSinceLevelLoad;
 			if(onGround)
@@ -145,6 +152,8 @@ public class Player : MonoBehaviour
     Collider2D[] ray = new Collider2D[2];
 	private void FixedUpdate()
 	{
+		if (body.velocity.y < 0)
+			body.gravityScale = 1;
 		onGround = Physics2D.OverlapCircleNonAlloc(new Vector2(transform.position.x, transform.position.y), .1f, ray, LayerMask.GetMask("ground"), float.MinValue, float.MaxValue) > 0;
 		onPlayer = Physics2D.OverlapCircleNonAlloc(new Vector2(transform.position.x, transform.position.y), .1f, ray, LayerMask.GetMask("player"), float.MinValue, float.MaxValue) > 1;
 		if (onGround || onPlayer)
@@ -156,12 +165,12 @@ public class Player : MonoBehaviour
 		{
 			body.drag = .2f;
 			body.AddForce(new Vector2((moveVector * moveForce * .1f).x, 0));
-
+			/*
 			if (jumpPressed && Time.timeSinceLevelLoad - jumpTime < .3f)
 			{
 				var jp = (.3f - (Time.timeSinceLevelLoad - jumpTime)) * 10;
 				body.AddForce(new Vector2(0, jp * 50), ForceMode2D.Force);
-			}
+			}*/
 		}
 
 		if (aimVector.sqrMagnitude > .25f)
@@ -176,13 +185,7 @@ public class Player : MonoBehaviour
 			var vd = (dv - cv);
 			var t = vd;
 			ab.AddTorque(t);
-			Debug.Log($"a: {da}, ca {ca}, dv {dv}, cv {cv}, vd {vd}, t {t}");
-			//float cv = 0;
-			//var aa = Mathf.SmoothDampAngle(ab.rotation, a, ref cv, .25f, 10, Time.deltaTime);
-			//ab.rotation = a;
-			//ab.MoveRotation(a);
-			//ab.AddTorque(a - ab.rotation);
-			//arm.localEulerAngles = new Vector3(0, 0, a);
+//			Debug.Log($"a: {da}, ca {ca}, dv {dv}, cv {cv}, vd {vd}, t {t}");
 		}
 		else
 		{

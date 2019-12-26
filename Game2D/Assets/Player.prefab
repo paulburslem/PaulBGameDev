@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 100
-  jumpForce: 15
+  jumpForce: 25
   arm: {fileID: 775416184639507881}
   hand: {fileID: 8367356425052730535}
   projectile: {fileID: 754771112472689732, guid: f7480285ae103754aa3cada03d197dad,
