@@ -133,13 +133,26 @@ public class Player : MonoBehaviour
 		if (aimVector.sqrMagnitude > .25f)
 		{
 			aimVector.Normalize();
-			var a = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
 			var ab = arm.GetComponent<Rigidbody2D>();
-			float cv = 0;
-			var aa = Mathf.SmoothDampAngle(ab.rotation, a, ref cv, .25f, 10, Time.deltaTime);
-			ab.rotation = a;
+
+			var da = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+			var ca = ab.rotation;
+			var dv = (da - ca) * 10;
+			var cv = ab.angularVelocity;
+			var vd = (dv - cv);
+			var t = vd;
+			ab.AddTorque(t);
+			Debug.Log($"a: {da}, ca {ca}, dv {dv}, cv {cv}, vd {vd}, t {t}");
+			//float cv = 0;
+			//var aa = Mathf.SmoothDampAngle(ab.rotation, a, ref cv, .25f, 10, Time.deltaTime);
+			//ab.rotation = a;
+			//ab.MoveRotation(a);
 			//ab.AddTorque(a - ab.rotation);
 			//arm.localEulerAngles = new Vector3(0, 0, a);
+		}
+		else
+		{
+			arm.GetComponent<Rigidbody2D>().angularVelocity = 0;
 		}
 
 	}
