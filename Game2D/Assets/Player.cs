@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 	{
 //		grappleJoint.connectedBody = other;
 		grappleJoint.connectedAnchor = position;
-		grappleJoint.distance = (hand.position - position).magnitude * .75f;
+		grappleJoint.distance = (hand.position - position).magnitude * .5f;
 ///		grappleJoint.anchor = Vector2.zero;
 		grappleJoint.enabled = true;
 	}
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
 
 			var da = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
 			var ca = ab.rotation;
-			var dv = (da - ca) * 10;
+			var dv = Mathf.DeltaAngle(ca, da) * 20;
 			var cv = ab.angularVelocity;
 			var vd = (dv - cv);
 			var t = vd;
