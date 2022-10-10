@@ -395,11 +395,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
-<<<<<<< HEAD
---- !u!114 &2187262530790402972
-=======
 --- !u!114 &8388713446796726307
->>>>>>> 79eb516c17471e10288547d13daf5fafdaf7addd
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,17 +404,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2393153696091961030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 16f26e7611778a6438af352b9bbe39aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: 0
-  movement: {x: 0, y: 0, z: 0}
-  swing: {x: 0, y: 0, z: 0}
-  playerIndex: 1
-  movementSpeed: 8
-  armTransform: {fileID: 2393153695740486641}
-=======
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -523,7 +508,6 @@ MonoBehaviour:
   health: 100
   state: 0
   playerIndex: 0
->>>>>>> 79eb516c17471e10288547d13daf5fafdaf7addd
 --- !u!1 &2393153696262538830
 GameObject:
   m_ObjectHideFlags: 0
